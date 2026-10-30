@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание: Мой день</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f2fe;
+            color: #1e293b;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid #bae6fd;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #0369a1;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .text-content {
+            font-size: 1.1rem;
+            color: #334155;
+            text-align: justify;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Стили для номеров */
+        .num {
+            font-weight: bold;
+            color: #0284c7;
+            margin-right: 2px;
+        }
+
+        /* Стили для полей ввода */
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #7dd3fc;
+            background-color: #f0f9ff;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #0f172a;
+            padding: 4px 8px;
+            width: 140px;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+            border-radius: 4px 4px 0 0;
+        }
+
+        input.short { width: 70px; }
+        input.long { width: 120px; }
+        input.xlong { width: 150px; }
+
+        input:focus {
+            border-bottom: 2px solid #0284c7;
+            background-color: #e0f2fe;
+        }
+
+        input.correct {
+            border-bottom-color: #22c55e;
+            background-color: #f0fdf4;
+            color: #166534;
+        }
+
+        input.incorrect {
+            border-bottom-color: #ef4444;
+            background-color: #fef2f2;
+            color: #991b1b;
+        }
+
+        /* Кнопки */
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .btn-check {
+            background-color: #0ea5e9;
+            color: white;
+        }
+
+        .btn-check:hover {
+            background-color: #0284c7;
+        }
+
+        .btn-show {
+            background-color: #8b5cf6;
+            color: white;
+        }
+
+        .btn-show:hover {
+            background-color: #7c3aed;
+        }
+
+        .btn-reset {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+
+        .btn-reset:hover {
+            background-color: #cbd5e1;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.3rem;
+            }
+            .text-content {
+                font-size: 1rem;
+                text-align: left;
+            }
+            input[type="text"] {
+                width: 110px;
+            }
+            input.short { width: 60px; }
+            input.long { width: 100px; }
+            input.xlong { width: 120px; }
+            .controls {
+                flex-direction: column;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Мой день</h1>
+    <p class="subtitle">Прослушайте аудио и вставьте пропущенные слова</p>
+
+    <div class="text-content">
+        <p>
+            <span class="num">(1)</span> Мой день начинается в <input type="text" class="xlong" data-answer="полшестого|5:30" placeholder="...">.
+            <span class="num">(2)</span> Обычно я лежу в кровати ещё <input type="text" class="short" data-answer="пять|5" placeholder="..."> минут и потом встаю.
+            После этого делаю зарядку и иду в душ. Потом я завтракаю и ухожу из дома.
+        </p>
+        <p>
+            Пока я еду на метро, я читаю книги. Я люблю книги по психологии. Эти книги пишутся очень интересными авторами, которые хорошо знают людей и психологию.
+        </p>
+        <p>
+            <span class="num">(3)</span> Мой рабочий день начинается в <input type="text" class="xlong" data-answer="пятнадцать минут девятого|08:15" placeholder="...">.
+            Я офисный сотрудник. Сейчас я работаю над новым проектом. Мне нужно готовить презентацию.
+        </p>
+        <p>
+            <span class="num">(4)</span> В <input type="text" class="long" data-answer="полпервого|12:30" placeholder="..."> у меня обед.
+            После обеда я продолжаю работать над проектом.
+            <span class="num">(5)</span> Моя работа заканчивается в <input type="text" class="xlong" data-answer="половину седьмого|18:30" placeholder="...">.
+        </p>
+        <p>
+            После работы я люблю посмотреть фильм или почитать интересную книгу. Мои друзья говорят, что я интроверт, потому что я никогда не хожу с ними в бар или клуб.
+        </p>
+    </div>
+
+    <div class="controls">
+        <button class="btn-check" onclick="checkAnswers()">Проверить ответы</button>
+        <button class="btn-show" onclick="showAnswers()">Показать ответы</button>
+        <button class="btn-reset" onclick="resetAnswers()">Сбросить</button>
+    </div>
+</div>
+
+<script>
+    // Функция проверки ответов (поддерживает 2 варианта через |)
+    function checkAnswers() {
+        const inputs = document.querySelectorAll('input[type="text"]');
+        let allCorrect = true;
+
+        inputs.forEach(input => {
+            const userAnswer = input.value.trim().toLowerCase();
+            // Разделяем правильные ответы по символу | и убираем лишние пробелы
+            const correctAnswers = input.dataset.answer.toLowerCase().split('|').map(ans => ans.trim());
+
+            input.classList.remove('correct', 'incorrect');
+
+            if (correctAnswers.includes(userAnswer)) {
+                input.classList.add('correct');
+            } else {
+                input.classList.add('incorrect');
+                allCorrect = false;
+            }
+        });
+
+        if (allCorrect) {
+            alert('Отлично! Все ответы верны.');
+        }
+    }
+
+    // Функция показа правильных ответов (выводит первый вариант из списка)
+    function showAnswers() {
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach(input => {
+            // Берем первый вариант ответа до символа |
+            const firstAnswer = input.dataset.answer.split('|')[0];
+            input.value = firstAnswer;
+            input.classList.remove('correct', 'incorrect');
+            // Добавляем класс, чтобы визуально выделить, что это подсказка
+            input.style.color = '#8b5cf6'; 
+            input.style.fontStyle = 'italic';
+        });
+    }
+
+    // Функция сброса
+    function resetAnswers() {
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach(input => {
+            input.value = '';
+            input.classList.remove('correct', 'incorrect');
+            input.style.color = ''; // Сброс стиля подсказки
+            input.style.fontStyle = '';
+        });
+    }
+</script>
+
+</body>
+</html>
